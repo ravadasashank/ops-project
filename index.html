@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MediTrack — Patient Monitoring System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:         #07090f;
-      --bg2:        #0d1117;
-      --bg3:        #131820;
-      --border:     #1e2733;
-      --text:       #e8edf5;
-      --muted:      #5a6a7e;
-      --accent:     #00d4ff;
-      --accent2:    #0099bb;
-      --green:      #00e676;
-      --yellow:     #ffd600;
-      --red:        #ff3d5a;
-      --orange:     #ff6d00;
-      --card-glow:  rgba(0, 212, 255, 0.06);
-      --font-head:  'Syne', sans-serif;
-      --font-mono:  'DM Mono', monospace;
-      --font-body:  'DM Sans', sans-serif;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #07090f;
+      --bg2: #0d1117;
+      --bg3: #131820;
+      --border: #1e2733;
+      --text: #e8edf5;
+      --muted: #5a6a7e;
+      --accent: #00d4ff;
+      --accent2: #0099bb;
+      --green: #00e676;
+      --yellow: #ffd600;
+      --red: #ff3d5a;
+      --orange: #ff6d00;
+      --card-glow: rgba(0, 212, 255, 0.06);
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       background: var(--bg);
@@ -41,21 +52,27 @@
     /* ── Grid noise texture ── */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background-image:
-        linear-gradient(rgba(0,212,255,0.015) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,255,0.015) 1px, transparent 1px);
+        linear-gradient(rgba(0, 212, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 255, 0.015) 1px, transparent 1px);
       background-size: 40px 40px;
-      pointer-events: none; z-index: 0;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ── Sidebar ── */
     .sidebar {
-      position: fixed; left: 0; top: 0; bottom: 0;
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
       width: 220px;
       background: var(--bg2);
       border-right: 1px solid var(--border);
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       z-index: 100;
       padding: 28px 0 20px;
     }
@@ -64,49 +81,94 @@
       padding: 0 24px 28px;
       border-bottom: 1px solid var(--border);
     }
+
     .logo-mark {
       font-family: var(--font-head);
-      font-size: 22px; font-weight: 800;
+      font-size: 22px;
+      font-weight: 800;
       color: var(--accent);
       letter-spacing: -0.5px;
     }
+
     .logo-sub {
       font-family: var(--font-mono);
-      font-size: 10px; color: var(--muted);
-      letter-spacing: 2px; text-transform: uppercase;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
       margin-top: 2px;
     }
 
-    .nav { margin-top: 20px; flex: 1; }
+    .nav {
+      margin-top: 20px;
+      flex: 1;
+    }
+
     .nav-item {
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       padding: 11px 24px;
-      cursor: pointer; transition: all 0.2s;
-      font-size: 13.5px; font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 13.5px;
+      font-weight: 500;
       color: var(--muted);
       border-left: 3px solid transparent;
       position: relative;
     }
-    .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.03); }
-    .nav-item.active { color: var(--accent); border-left-color: var(--accent); background: rgba(0,212,255,0.05); }
-    .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-item.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    .nav-item svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
 
     .sidebar-footer {
       padding: 16px 24px;
       border-top: 1px solid var(--border);
     }
+
     .api-status {
-      display: flex; align-items: center; gap: 8px;
-      font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
     }
+
     .pulse {
-      width: 7px; height: 7px; border-radius: 50%;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
       background: var(--green);
       animation: pulse 2s ease-in-out infinite;
     }
+
     @keyframes pulse {
-      0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,230,118,0.4); }
-      50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(0,230,118,0); }
+
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4);
+      }
+
+      50% {
+        opacity: 0.7;
+        box-shadow: 0 0 0 5px rgba(0, 230, 118, 0);
+      }
     }
 
     /* ── Main ── */
@@ -114,616 +176,1156 @@
       margin-left: 220px;
       padding: 32px 36px;
       min-height: 100vh;
-      position: relative; z-index: 1;
+      position: relative;
+      z-index: 1;
     }
 
     .topbar {
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-bottom: 32px;
     }
+
     .page-title {
       font-family: var(--font-head);
-      font-size: 26px; font-weight: 700;
+      font-size: 26px;
+      font-weight: 700;
       color: var(--text);
     }
-    .page-title span { color: var(--accent); }
-    .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+    .page-title span {
+      color: var(--accent);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
     .btn {
-      display: inline-flex; align-items: center; gap: 7px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       padding: 9px 18px;
-      border-radius: 8px; border: none; cursor: pointer;
-      font-family: var(--font-body); font-size: 13px; font-weight: 500;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
       transition: all 0.2s;
     }
-    .btn-primary { background: var(--accent); color: #000; }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
-    .btn-ghost { background: var(--bg3); color: var(--muted); border: 1px solid var(--border); }
-    .btn-ghost:hover { color: var(--text); border-color: var(--muted); }
-    .btn svg { width: 14px; height: 14px; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent2);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: var(--bg3);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+
+    .btn svg {
+      width: 14px;
+      height: 14px;
+    }
 
     /* ── Sections ── */
-    .section { display: none; }
-    .section.active { display: block; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
 
     /* ── Stat Cards ── */
     .stats-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 16px; margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
     }
+
     .stat-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 12px; padding: 20px 22px;
-      position: relative; overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      position: relative;
+      overflow: hidden;
       transition: border-color 0.2s;
     }
+
     .stat-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 2px;
     }
-    .stat-card.blue::before   { background: var(--accent); }
-    .stat-card.red::before    { background: var(--red); }
-    .stat-card.green::before  { background: var(--green); }
-    .stat-card.yellow::before { background: var(--yellow); }
-    .stat-card:hover { border-color: var(--muted); }
+
+    .stat-card.blue::before {
+      background: var(--accent);
+    }
+
+    .stat-card.red::before {
+      background: var(--red);
+    }
+
+    .stat-card.green::before {
+      background: var(--green);
+    }
+
+    .stat-card.yellow::before {
+      background: var(--yellow);
+    }
+
+    .stat-card:hover {
+      border-color: var(--muted);
+    }
 
     .stat-label {
-      font-family: var(--font-mono); font-size: 10px;
-      text-transform: uppercase; letter-spacing: 1.5px;
-      color: var(--muted); margin-bottom: 10px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 10px;
     }
+
     .stat-value {
-      font-family: var(--font-head); font-size: 38px; font-weight: 800;
+      font-family: var(--font-head);
+      font-size: 38px;
+      font-weight: 800;
       line-height: 1;
     }
-    .stat-card.blue   .stat-value { color: var(--accent); }
-    .stat-card.red    .stat-value { color: var(--red); }
-    .stat-card.green  .stat-value { color: var(--green); }
-    .stat-card.yellow .stat-value { color: var(--yellow); }
-    .stat-sub { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+    .stat-card.blue .stat-value {
+      color: var(--accent);
+    }
+
+    .stat-card.red .stat-value {
+      color: var(--red);
+    }
+
+    .stat-card.green .stat-value {
+      color: var(--green);
+    }
+
+    .stat-card.yellow .stat-value {
+      color: var(--yellow);
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
 
     /* ── Filters ── */
     .filters {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 20px; flex-wrap: wrap;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
+
     .search-box {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 8px 14px; flex: 1; min-width: 200px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 14px;
+      flex: 1;
+      min-width: 200px;
       transition: border-color 0.2s;
     }
-    .search-box:focus-within { border-color: var(--accent); }
-    .search-box svg { color: var(--muted); width: 14px; height: 14px; }
+
+    .search-box:focus-within {
+      border-color: var(--accent);
+    }
+
+    .search-box svg {
+      color: var(--muted);
+      width: 14px;
+      height: 14px;
+    }
+
     .search-box input {
-      background: none; border: none; outline: none;
-      color: var(--text); font-family: var(--font-body); font-size: 13.5px;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13.5px;
       width: 100%;
     }
-    .search-box input::placeholder { color: var(--muted); }
-    select {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 8px; padding: 8px 12px;
-      color: var(--text); font-family: var(--font-body); font-size: 13px;
-      cursor: pointer; outline: none;
+
+    .search-box input::placeholder {
+      color: var(--muted);
     }
-    select:focus { border-color: var(--accent); }
+
+    select {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: var(--accent);
+    }
 
     /* ── Patient Table ── */
     .table-wrap {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 12px; overflow: hidden;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
     }
-    table { width: 100%; border-collapse: collapse; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
     thead th {
-      padding: 13px 18px; text-align: left;
-      font-family: var(--font-mono); font-size: 10px;
-      text-transform: uppercase; letter-spacing: 1.5px;
+      padding: 13px 18px;
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       color: var(--muted);
-      background: var(--bg3); border-bottom: 1px solid var(--border);
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
     }
+
     tbody tr {
-      border-bottom: 1px solid rgba(30,39,51,0.6);
-      transition: background 0.15s; cursor: pointer;
+      border-bottom: 1px solid rgba(30, 39, 51, 0.6);
+      transition: background 0.15s;
+      cursor: pointer;
     }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: rgba(0,212,255,0.03); }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: rgba(0, 212, 255, 0.03);
+    }
+
     td {
-      padding: 14px 18px; font-size: 13.5px;
+      padding: 14px 18px;
+      font-size: 13.5px;
     }
-    .patient-name { font-weight: 600; color: var(--text); }
-    .patient-id { font-family: var(--font-mono); font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+    .patient-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .patient-id {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
 
     .badge {
-      display: inline-flex; align-items: center;
-      padding: 3px 10px; border-radius: 20px;
-      font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
     }
-    .badge-critical { background: rgba(255,61,90,0.15); color: var(--red); border: 1px solid rgba(255,61,90,0.3); }
-    .badge-stable   { background: rgba(0,230,118,0.12); color: var(--green); border: 1px solid rgba(0,230,118,0.25); }
-    .badge-recovering { background: rgba(255,214,0,0.12); color: var(--yellow); border: 1px solid rgba(255,214,0,0.25); }
 
-    .action-btns { display: flex; gap: 6px; }
-    .icon-btn {
-      width: 30px; height: 30px; border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border); background: var(--bg3);
-      cursor: pointer; transition: all 0.15s; color: var(--muted);
+    .badge-critical {
+      background: rgba(255, 61, 90, 0.15);
+      color: var(--red);
+      border: 1px solid rgba(255, 61, 90, 0.3);
     }
-    .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .icon-btn.danger:hover { border-color: var(--red); color: var(--red); }
-    .icon-btn svg { width: 13px; height: 13px; }
+
+    .badge-stable {
+      background: rgba(0, 230, 118, 0.12);
+      color: var(--green);
+      border: 1px solid rgba(0, 230, 118, 0.25);
+    }
+
+    .badge-recovering {
+      background: rgba(255, 214, 0, 0.12);
+      color: var(--yellow);
+      border: 1px solid rgba(255, 214, 0, 0.25);
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 6px;
+    }
+
+    .icon-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--muted);
+    }
+
+    .icon-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .icon-btn.danger:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .icon-btn svg {
+      width: 13px;
+      height: 13px;
+    }
 
     /* ── Vitals Panel ── */
     .vitals-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 16px; margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
     }
+
     .vital-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 12px; padding: 18px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
     }
-    .vital-name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-    .vital-value { font-family: var(--font-head); font-size: 32px; font-weight: 700; }
-    .vital-unit { font-size: 12px; color: var(--muted); margin-left: 4px; font-weight: 400; }
-    .vital-bar { height: 3px; background: var(--border); border-radius: 2px; margin-top: 10px; overflow: hidden; }
-    .vital-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
-    .fill-normal  { background: var(--green); }
-    .fill-warning { background: var(--yellow); }
-    .fill-danger  { background: var(--red); }
+
+    .vital-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .vital-value {
+      font-family: var(--font-head);
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    .vital-unit {
+      font-size: 12px;
+      color: var(--muted);
+      margin-left: 4px;
+      font-weight: 400;
+    }
+
+    .vital-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .vital-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    .fill-normal {
+      background: var(--green);
+    }
+
+    .fill-warning {
+      background: var(--yellow);
+    }
+
+    .fill-danger {
+      background: var(--red);
+    }
 
     /* ── Modal ── */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(7,9,15,0.85);
-      display: none; align-items: center; justify-content: center;
-      z-index: 1000; backdrop-filter: blur(4px);
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 9, 15, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(4px);
     }
-    .modal-overlay.open { display: flex; }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
     .modal {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 16px; padding: 32px; width: 520px; max-width: 90vw;
-      max-height: 90vh; overflow-y: auto;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      width: 520px;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
       animation: slideUp 0.25s ease;
     }
-    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
     .modal-title {
-      font-family: var(--font-head); font-size: 20px; font-weight: 700;
-      margin-bottom: 24px; color: var(--text);
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text);
     }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
-    label { font-size: 12px; color: var(--muted); font-weight: 500; }
-    input, select, textarea {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 8px; padding: 9px 12px;
-      color: var(--text); font-family: var(--font-body); font-size: 13.5px;
-      outline: none; transition: border-color 0.2s;
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
-    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    input,
+    select,
+    textarea {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 12px;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
 
     /* ── Vitals modal ── */
     .vitals-detail {
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 12px; padding: 20px; margin-top: 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
     }
+
     .vitals-detail h4 {
-      font-family: var(--font-mono); font-size: 11px;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
     }
+
     .vitals-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 0; border-bottom: 1px solid rgba(30,39,51,0.6);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(30, 39, 51, 0.6);
       font-size: 13px;
     }
-    .vitals-row:last-child { border-bottom: none; }
-    .vitals-row-label { color: var(--muted); }
-    .vitals-row-value { font-family: var(--font-mono); font-weight: 500; }
-    .vr-normal  { color: var(--green); }
-    .vr-warning { color: var(--yellow); }
-    .vr-danger  { color: var(--red); }
+
+    .vitals-row:last-child {
+      border-bottom: none;
+    }
+
+    .vitals-row-label {
+      color: var(--muted);
+    }
+
+    .vitals-row-value {
+      font-family: var(--font-mono);
+      font-weight: 500;
+    }
+
+    .vr-normal {
+      color: var(--green);
+    }
+
+    .vr-warning {
+      color: var(--yellow);
+    }
+
+    .vr-danger {
+      color: var(--red);
+    }
 
     /* ── Toast ── */
     .toast {
-      position: fixed; bottom: 24px; right: 24px;
-      background: var(--bg3); border: 1px solid var(--border);
-      border-radius: 10px; padding: 14px 18px;
-      font-size: 13.5px; z-index: 9999;
-      display: flex; align-items: center; gap: 10px;
-      transform: translateY(80px); opacity: 0;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 13.5px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(80px);
+      opacity: 0;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
-    .toast.show { transform: none; opacity: 1; }
-    .toast.success { border-color: rgba(0,230,118,0.4); }
-    .toast.error   { border-color: rgba(255,61,90,0.4); }
+
+    .toast.show {
+      transform: none;
+      opacity: 1;
+    }
+
+    .toast.success {
+      border-color: rgba(0, 230, 118, 0.4);
+    }
+
+    .toast.error {
+      border-color: rgba(255, 61, 90, 0.4);
+    }
 
     /* ── Empty state ── */
-    .empty { text-align: center; padding: 60px 20px; color: var(--muted); }
-    .empty svg { width: 48px; height: 48px; margin-bottom: 14px; opacity: 0.3; }
-    .empty p { font-size: 14px; }
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    .empty svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 14px;
+      opacity: 0.3;
+    }
+
+    .empty p {
+      font-size: 14px;
+    }
 
     /* ── About / DevOps section ── */
-    .devops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .devops-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
     .devops-card {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 12px; padding: 22px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .devops-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .devops-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .devops-icon {
-      width: 38px; height: 38px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; background: var(--bg3); border: 1px solid var(--border);
+
+    .devops-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
-    .devops-card-title { font-family: var(--font-head); font-size: 16px; font-weight: 700; }
-    .devops-card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .devops-card-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .devops-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+    }
+
+    .devops-card-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .devops-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
     .devops-port {
-      margin-top: 10px; font-family: var(--font-mono); font-size: 11px;
-      color: var(--accent); background: rgba(0,212,255,0.08);
-      display: inline-block; padding: 3px 8px; border-radius: 4px;
+      margin-top: 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent);
+      background: rgba(0, 212, 255, 0.08);
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
     }
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .sidebar { width: 60px; }
-      .logo-mark, .logo-sub, .nav-item span, .sidebar-footer { display: none; }
-      .main { margin-left: 60px; padding: 20px; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .vitals-grid { grid-template-columns: 1fr 1fr; }
-      .devops-grid { grid-template-columns: 1fr; }
+      .sidebar {
+        width: 60px;
+      }
+
+      .logo-mark,
+      .logo-sub,
+      .nav-item span,
+      .sidebar-footer {
+        display: none;
+      }
+
+      .main {
+        margin-left: 60px;
+        padding: 20px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .vitals-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .devops-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- ── Sidebar ── -->
-<aside class="sidebar">
-  <div class="logo">
-    <div class="logo-mark">MediTrack</div>
-    <div class="logo-sub">v1.0.0 · Production</div>
-  </div>
-  <nav class="nav">
-    <div class="nav-item active" onclick="navigate('dashboard')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      <span>Dashboard</span>
+  <!-- ── Sidebar ── -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">MediTrack</div>
+      <div class="logo-sub">v1.0.0 · Production</div>
     </div>
-    <div class="nav-item" onclick="navigate('patients')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span>Patients</span>
-    </div>
-    <div class="nav-item" onclick="navigate('vitals')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      <span>Vitals</span>
-    </div>
-    <div class="nav-item" onclick="navigate('devops')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-      <span>DevOps</span>
-    </div>
-  </nav>
-  <div class="sidebar-footer">
-    <div class="api-status"><div class="pulse"></div> <span>API Online</span></div>
-  </div>
-</aside>
-
-<!-- ── Main Content ── -->
-<main class="main">
-
-  <!-- DASHBOARD -->
-  <section class="section active" id="sec-dashboard">
-    <div class="topbar">
-      <div>
-        <div class="page-title">System <span>Overview</span></div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="datetime"></div>
+    <nav class="nav">
+      <div class="nav-item active" onclick="navigate('dashboard')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" />
+          <rect x="14" y="3" width="7" height="7" />
+          <rect x="3" y="14" width="7" height="7" />
+          <rect x="14" y="14" width="7" height="7" />
+        </svg>
+        <span>Dashboard</span>
       </div>
-      <div class="topbar-right">
-        <button class="btn btn-ghost" onclick="navigate('patients')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          View Patients
-        </button>
+      <div class="nav-item" onclick="navigate('patients')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+        <span>Patients</span>
+      </div>
+      <div class="nav-item" onclick="navigate('vitals')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+        <span>Vitals</span>
+      </div>
+      <div class="nav-item" onclick="navigate('devops')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3" />
+          <path
+            d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
+        </svg>
+        <span>DevOps</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="api-status">
+        <div class="pulse"></div> <span>API Online</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── Main Content ── -->
+  <main class="main">
+
+    <!-- DASHBOARD -->
+    <section class="section active" id="sec-dashboard">
+      <div class="topbar">
+        <div>
+          <div class="page-title">System <span>Overview</span></div>
+          <div style="font-size:12px;color:var(--muted);margin-top:4px;" id="datetime"></div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-ghost" onclick="navigate('patients')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            View Patients
+          </button>
+          <button class="btn btn-primary" onclick="openAdmitModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+            Admit Patient
+          </button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card blue">
+          <div class="stat-label">Total Patients</div>
+          <div class="stat-value" id="stat-total">—</div>
+          <div class="stat-sub">Currently admitted</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-label">Critical</div>
+          <div class="stat-value" id="stat-critical">—</div>
+          <div class="stat-sub">Needs immediate attention</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-label">Stable</div>
+          <div class="stat-value" id="stat-stable">—</div>
+          <div class="stat-sub">Under observation</div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="stat-label">Recovering</div>
+          <div class="stat-value" id="stat-recovering">—</div>
+          <div class="stat-sub">Improving condition</div>
+        </div>
+      </div>
+
+      <!-- Recent patients table on dashboard -->
+      <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:14px;">
+        Critical & Recent Patients
+      </div>
+      <div class="table-wrap" id="dash-table">
+        <div class="empty">
+          <p>Loading…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section class="section" id="sec-patients">
+      <div class="topbar">
+        <div class="page-title">Patient <span>Registry</span></div>
         <button class="btn btn-primary" onclick="openAdmitModal()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
           Admit Patient
         </button>
       </div>
-    </div>
 
-    <div class="stats-grid">
-      <div class="stat-card blue">
-        <div class="stat-label">Total Patients</div>
-        <div class="stat-value" id="stat-total">—</div>
-        <div class="stat-sub">Currently admitted</div>
-      </div>
-      <div class="stat-card red">
-        <div class="stat-label">Critical</div>
-        <div class="stat-value" id="stat-critical">—</div>
-        <div class="stat-sub">Needs immediate attention</div>
-      </div>
-      <div class="stat-card green">
-        <div class="stat-label">Stable</div>
-        <div class="stat-value" id="stat-stable">—</div>
-        <div class="stat-sub">Under observation</div>
-      </div>
-      <div class="stat-card yellow">
-        <div class="stat-label">Recovering</div>
-        <div class="stat-value" id="stat-recovering">—</div>
-        <div class="stat-sub">Improving condition</div>
-      </div>
-    </div>
-
-    <!-- Recent patients table on dashboard -->
-    <div style="font-family:var(--font-head);font-size:16px;font-weight:700;margin-bottom:14px;">
-      Critical & Recent Patients
-    </div>
-    <div class="table-wrap" id="dash-table">
-      <div class="empty"><p>Loading…</p></div>
-    </div>
-  </section>
-
-  <!-- PATIENTS -->
-  <section class="section" id="sec-patients">
-    <div class="topbar">
-      <div class="page-title">Patient <span>Registry</span></div>
-      <button class="btn btn-primary" onclick="openAdmitModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Admit Patient
-      </button>
-    </div>
-
-    <div class="filters">
-      <div class="search-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="search-input" placeholder="Search by name…" oninput="renderPatients()" />
-      </div>
-      <select id="filter-ward" onchange="renderPatients()">
-        <option value="">All Wards</option>
-        <option>Cardiology</option><option>Neurology</option><option>Orthopedics</option>
-        <option>Maternity</option><option>ICU</option><option>General</option>
-      </select>
-      <select id="filter-status" onchange="renderPatients()">
-        <option value="">All Status</option>
-        <option>Critical</option><option>Stable</option><option>Recovering</option>
-      </select>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Patient</th><th>Age / Gender</th><th>Blood</th>
-            <th>Ward</th><th>Doctor</th><th>Status</th><th>Admitted</th><th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="patient-tbody"></tbody>
-      </table>
-      <div id="patient-empty" class="empty" style="display:none">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        <p>No patients found.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- VITALS -->
-  <section class="section" id="sec-vitals">
-    <div class="topbar">
-      <div class="page-title">Vitals <span>Monitor</span></div>
-      <select id="vitals-patient-select" onchange="loadVitals()" style="min-width:200px;">
-        <option value="">Select Patient…</option>
-      </select>
-    </div>
-    <div id="vitals-content">
-      <div class="empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        <p>Select a patient to view their vitals.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEVOPS -->
-  <section class="section" id="sec-devops">
-    <div class="topbar">
-      <div class="page-title">DevOps <span>Stack</span></div>
-    </div>
-    <div style="font-size:13.5px;color:var(--muted);margin-bottom:24px;max-width:600px;line-height:1.7;">
-      MediTrack is deployed with a production-grade DevOps pipeline.
-      Every tool below has a specific role in keeping the system reliable, scalable, and observable.
-    </div>
-    <div class="devops-grid">
-      <div class="devops-card">
-        <div class="devops-card-head">
-          <div class="devops-icon">🐳</div>
-          <div class="devops-card-title">Docker</div>
+      <div class="filters">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="search-input" placeholder="Search by name…" oninput="renderPatients()" />
         </div>
-        <div class="devops-card-desc">Packages the MediTrack API and frontend into isolated containers. Ensures identical behaviour across dev, staging, and hospital production servers. Multi-stage build keeps the image minimal and secure.</div>
-        <div class="devops-port">docker-compose up --build</div>
+        <select id="filter-ward" onchange="renderPatients()">
+          <option value="">All Wards</option>
+          <option>Cardiology</option>
+          <option>Neurology</option>
+          <option>Orthopedics</option>
+          <option>Maternity</option>
+          <option>ICU</option>
+          <option>General</option>
+        </select>
+        <select id="filter-status" onchange="renderPatients()">
+          <option value="">All Status</option>
+          <option>Critical</option>
+          <option>Stable</option>
+          <option>Recovering</option>
+        </select>
       </div>
-      <div class="devops-card">
-        <div class="devops-card-head">
-          <div class="devops-icon">☸️</div>
-          <div class="devops-card-title">Kubernetes</div>
-        </div>
-        <div class="devops-card-desc">Orchestrates containers in production. Runs 2 replicas with rolling updates (zero downtime). HorizontalPodAutoscaler scales from 2–10 pods when patient load spikes. Liveness probes auto-restart unhealthy pods.</div>
-        <div class="devops-port">kubectl apply -f k8s/</div>
-      </div>
-      <div class="devops-card">
-        <div class="devops-card-head">
-          <div class="devops-icon">🔧</div>
-          <div class="devops-card-title">Jenkins</div>
-        </div>
-        <div class="devops-card-desc">Automates the CI/CD pipeline on every Git push. Runs tests → builds Docker image → pushes to Docker Hub → deploys to Kubernetes. Only deploys to production on the main branch.</div>
-        <div class="devops-port">:8080 — Jenkins Dashboard</div>
-      </div>
-      <div class="devops-card">
-        <div class="devops-card-head">
-          <div class="devops-icon">🏗️</div>
-          <div class="devops-card-title">Terraform</div>
-        </div>
-        <div class="devops-card-desc">Provisions AWS EC2 infrastructure as code. Creates the server, security group (ports 22/80/3000), and installs Docker automatically. Remote state in S3 enables team collaboration and audit trails.</div>
-        <div class="devops-port">terraform apply</div>
-      </div>
-      <div class="devops-card">
-        <div class="devops-card-head">
-          <div class="devops-icon">📊</div>
-          <div class="devops-card-title">Prometheus</div>
-        </div>
-        <div class="devops-card-desc">Scrapes /metrics from the API every 15 seconds. Tracks HTTP request counts, request durations, active patient counts, and critical patient gauges — all custom metrics exposed by the Node.js app.</div>
-        <div class="devops-port">:9090 — Prometheus UI</div>
-      </div>
-      <div class="devops-card">
-        <div class="devops-card-head">
-          <div class="devops-icon">📈</div>
-          <div class="devops-card-title">Grafana</div>
-        </div>
-        <div class="devops-card-desc">Visualises all Prometheus metrics in real-time dashboards. Auto-provisioned with Prometheus as a datasource. Hospital IT staff can see request rates, error rates, uptime, and patient count trends.</div>
-        <div class="devops-port">:3001 — Grafana Dashboard</div>
-      </div>
-    </div>
-  </section>
 
-</main>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Age / Gender</th>
+              <th>Blood</th>
+              <th>Ward</th>
+              <th>Doctor</th>
+              <th>Status</th>
+              <th>Admitted</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patient-tbody"></tbody>
+        </table>
+        <div id="patient-empty" class="empty" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+          </svg>
+          <p>No patients found.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- ── Admit Patient Modal ── -->
-<div class="modal-overlay" id="admit-modal">
-  <div class="modal">
-    <div class="modal-title">Admit New Patient</div>
-    <div class="form-grid">
-      <div class="form-group full"><label>Full Name *</label><input id="f-name" type="text" placeholder="e.g. Arjun Sharma" /></div>
-      <div class="form-group"><label>Age *</label><input id="f-age" type="number" min="0" max="150" placeholder="45" /></div>
-      <div class="form-group"><label>Gender *</label>
-        <select id="f-gender"><option value="">Select…</option><option>Male</option><option>Female</option><option>Other</option></select>
+    <!-- VITALS -->
+    <section class="section" id="sec-vitals">
+      <div class="topbar">
+        <div class="page-title">Vitals <span>Monitor</span></div>
+        <select id="vitals-patient-select" onchange="loadVitals()" style="min-width:200px;">
+          <option value="">Select Patient…</option>
+        </select>
       </div>
-      <div class="form-group"><label>Blood Group</label>
-        <select id="f-blood"><option value="">Select…</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select>
+      <div id="vitals-content">
+        <div class="empty">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          <p>Select a patient to view their vitals.</p>
+        </div>
       </div>
-      <div class="form-group"><label>Ward *</label>
-        <select id="f-ward"><option value="">Select…</option><option>Cardiology</option><option>Neurology</option><option>Orthopedics</option><option>Maternity</option><option>ICU</option><option>General</option></select>
+    </section>
+
+    <!-- DEVOPS -->
+    <section class="section" id="sec-devops">
+      <div class="topbar">
+        <div class="page-title">DevOps <span>Stack</span></div>
       </div>
-      <div class="form-group"><label>Status *</label>
-        <select id="f-status"><option value="">Select…</option><option>Critical</option><option>Stable</option><option>Recovering</option></select>
+      <div style="font-size:13.5px;color:var(--muted);margin-bottom:24px;max-width:600px;line-height:1.7;">
+        MediTrack is deployed with a production-grade DevOps pipeline.
+        Every tool below has a specific role in keeping the system reliable, scalable, and observable.
       </div>
-      <div class="form-group full"><label>Assigned Doctor *</label><input id="f-doctor" type="text" placeholder="Dr. Priya Mehta" /></div>
-      <div class="form-group full"><label>Emergency Contact</label><input id="f-contact" type="text" placeholder="+91-9876543210" /></div>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('admit-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="admitPatient()">Admit Patient</button>
+      <div class="devops-grid">
+        <div class="devops-card">
+          <div class="devops-card-head">
+            <div class="devops-icon">🐳</div>
+            <div class="devops-card-title">Docker</div>
+          </div>
+          <div class="devops-card-desc">Packages the MediTrack API and frontend into isolated containers. Ensures
+            identical behaviour across dev, staging, and hospital production servers. Multi-stage build keeps the image
+            minimal and secure.</div>
+          <div class="devops-port">docker-compose up --build</div>
+        </div>
+        <div class="devops-card">
+          <div class="devops-card-head">
+            <div class="devops-icon">☸️</div>
+            <div class="devops-card-title">Kubernetes</div>
+          </div>
+          <div class="devops-card-desc">Orchestrates containers in production. Runs 2 replicas with rolling updates
+            (zero downtime). HorizontalPodAutoscaler scales from 2–10 pods when patient load spikes. Liveness probes
+            auto-restart unhealthy pods.</div>
+          <div class="devops-port">kubectl apply -f k8s/</div>
+        </div>
+        <div class="devops-card">
+          <div class="devops-card-head">
+            <div class="devops-icon">🔧</div>
+            <div class="devops-card-title">Jenkins</div>
+          </div>
+          <div class="devops-card-desc">Automates the CI/CD pipeline on every Git push. Runs tests → builds Docker image
+            → pushes to Docker Hub → deploys to Kubernetes. Only deploys to production on the main branch.</div>
+          <div class="devops-port">:8080 — Jenkins Dashboard</div>
+        </div>
+        <div class="devops-card">
+          <div class="devops-card-head">
+            <div class="devops-icon">🏗️</div>
+            <div class="devops-card-title">Terraform</div>
+          </div>
+          <div class="devops-card-desc">Provisions AWS EC2 infrastructure as code. Creates the server, security group
+            (ports 22/80/3000), and installs Docker automatically. Remote state in S3 enables team collaboration and
+            audit trails.</div>
+          <div class="devops-port">terraform apply</div>
+        </div>
+        <div class="devops-card">
+          <div class="devops-card-head">
+            <div class="devops-icon">📊</div>
+            <div class="devops-card-title">Prometheus</div>
+          </div>
+          <div class="devops-card-desc">Scrapes /metrics from the API every 15 seconds. Tracks HTTP request counts,
+            request durations, active patient counts, and critical patient gauges — all custom metrics exposed by the
+            Node.js app.</div>
+          <div class="devops-port">:9090 — Prometheus UI</div>
+        </div>
+        <div class="devops-card">
+          <div class="devops-card-head">
+            <div class="devops-icon">📈</div>
+            <div class="devops-card-title">Grafana</div>
+          </div>
+          <div class="devops-card-desc">Visualises all Prometheus metrics in real-time dashboards. Auto-provisioned with
+            Prometheus as a datasource. Hospital IT staff can see request rates, error rates, uptime, and patient count
+            trends.</div>
+          <div class="devops-port">:3001 — Grafana Dashboard</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Admit Patient Modal ── -->
+  <div class="modal-overlay" id="admit-modal">
+    <div class="modal">
+      <div class="modal-title">Admit New Patient</div>
+      <div class="form-grid">
+        <div class="form-group full"><label>Full Name *</label><input id="f-name" type="text"
+            placeholder="e.g. Arjun Sharma" /></div>
+        <div class="form-group"><label>Age *</label><input id="f-age" type="number" min="0" max="150"
+            placeholder="45" /></div>
+        <div class="form-group"><label>Gender *</label>
+          <select id="f-gender">
+            <option value="">Select…</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Blood Group</label>
+          <select id="f-blood">
+            <option value="">Select…</option>
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Ward *</label>
+          <select id="f-ward">
+            <option value="">Select…</option>
+            <option>Cardiology</option>
+            <option>Neurology</option>
+            <option>Orthopedics</option>
+            <option>Maternity</option>
+            <option>ICU</option>
+            <option>General</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Status *</label>
+          <select id="f-status">
+            <option value="">Select…</option>
+            <option>Critical</option>
+            <option>Stable</option>
+            <option>Recovering</option>
+          </select>
+        </div>
+        <div class="form-group full"><label>Assigned Doctor *</label><input id="f-doctor" type="text"
+            placeholder="Dr. Priya Mehta" /></div>
+        <div class="form-group full"><label>Emergency Contact</label><input id="f-contact" type="text"
+            placeholder="+91-9876543210" /></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal('admit-modal')">Cancel</button>
+        <button class="btn btn-primary" onclick="admitPatient()">Admit Patient</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ── Vitals Modal ── -->
-<div class="modal-overlay" id="vitals-modal">
-  <div class="modal">
-    <div class="modal-title" id="vitals-modal-title">Patient Vitals</div>
-    <div id="vitals-modal-content"></div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeModal('vitals-modal')">Close</button>
+  <!-- ── Vitals Modal ── -->
+  <div class="modal-overlay" id="vitals-modal">
+    <div class="modal">
+      <div class="modal-title" id="vitals-modal-title">Patient Vitals</div>
+      <div id="vitals-modal-content"></div>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" onclick="closeModal('vitals-modal')">Close</button>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ── Toast ── -->
-<div class="toast" id="toast"></div>
+  <!-- ── Toast ── -->
+  <div class="toast" id="toast"></div>
 
-<script>
-  // ── State ──────────────────────────────────────────────────────────────────
-  const API = 'http://localhost:5000/api';
-  let patients = [];
+  <script>
+    // ── State ──────────────────────────────────────────────────────────────────
+    const API = 'http://localhost:5050/api';
+    let patients = [];
 
-  // ── Init ───────────────────────────────────────────────────────────────────
-  window.addEventListener('DOMContentLoaded', () => {
-    updateClock();
-    setInterval(updateClock, 1000);
-    loadData();
-    setInterval(loadData, 30000); // auto-refresh every 30s
-  });
+    // ── Init ───────────────────────────────────────────────────────────────────
+    window.addEventListener('DOMContentLoaded', () => {
+      updateClock();
+      setInterval(updateClock, 1000);
+      loadData();
+      setInterval(loadData, 30000); // auto-refresh every 30s
+    });
 
-  function updateClock() {
-    const el = document.getElementById('datetime');
-    if (el) el.textContent = new Date().toLocaleString('en-IN', { dateStyle: 'full', timeStyle: 'medium' });
-  }
-
-  // ── Navigation ─────────────────────────────────────────────────────────────
-  function navigate(page) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.getElementById('sec-' + page).classList.add('active');
-    const items = { dashboard: 0, patients: 1, vitals: 2, devops: 3 };
-    document.querySelectorAll('.nav-item')[items[page]]?.classList.add('active');
-    if (page === 'patients') renderPatients();
-    if (page === 'vitals') populateVitalsSelect();
-  }
-
-  // ── Data Loading ───────────────────────────────────────────────────────────
-  async function loadData() {
-    try {
-      const [pRes, sRes] = await Promise.all([
-        fetch(`${API}/patients`),
-        fetch(`${API}/patients/stats`),
-      ]);
-      const pData = await pRes.json();
-      const stats = await sRes.json();
-      patients = pData.patients || [];
-      updateStats(stats);
-      renderDashTable();
-    } catch {
-      // API not running — use seed data for demo
-      patients = getSeedData();
-      updateStats({ total: patients.length, critical: patients.filter(p=>p.status==='Critical').length, stable: patients.filter(p=>p.status==='Stable').length, recovering: patients.filter(p=>p.status==='Recovering').length });
-      renderDashTable();
+    function updateClock() {
+      const el = document.getElementById('datetime');
+      if (el) el.textContent = new Date().toLocaleString('en-IN', { dateStyle: 'full', timeStyle: 'medium' });
     }
-  }
 
-  function getSeedData() {
-    return [
-      { id:'p-001', name:'Arjun Sharma',   age:45, gender:'Male',   bloodGroup:'O+',  ward:'Cardiology',  status:'Critical',   admittedAt:'2024-01-10T08:30:00Z', doctor:'Dr. Priya Mehta',     contact:'+91-9876543210' },
-      { id:'p-002', name:'Sunita Verma',   age:34, gender:'Female', bloodGroup:'A+',  ward:'Neurology',   status:'Stable',     admittedAt:'2024-01-12T11:00:00Z', doctor:'Dr. Ramesh Gupta',    contact:'+91-9123456789' },
-      { id:'p-003', name:'Mohammed Irfan', age:62, gender:'Male',   bloodGroup:'B-',  ward:'Orthopedics', status:'Recovering', admittedAt:'2024-01-08T14:15:00Z', doctor:'Dr. Anjali Singh',    contact:'+91-9012345678' },
-      { id:'p-004', name:'Kavita Nair',    age:28, gender:'Female', bloodGroup:'AB+', ward:'Maternity',   status:'Stable',     admittedAt:'2024-01-14T09:45:00Z', doctor:'Dr. Deepa Krishnan',  contact:'+91-9988776655' },
-      { id:'p-005', name:'Rajesh Patel',   age:55, gender:'Male',   bloodGroup:'O-',  ward:'ICU',         status:'Critical',   admittedAt:'2024-01-15T02:00:00Z', doctor:'Dr. Priya Mehta',     contact:'+91-9876501234' },
-    ];
-  }
+    // ── Navigation ─────────────────────────────────────────────────────────────
+    function navigate(page) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.getElementById('sec-' + page).classList.add('active');
+      const items = { dashboard: 0, patients: 1, vitals: 2, devops: 3 };
+      document.querySelectorAll('.nav-item')[items[page]]?.classList.add('active');
+      if (page === 'patients') renderPatients();
+      if (page === 'vitals') populateVitalsSelect();
+    }
 
-  function updateStats(s) {
-    document.getElementById('stat-total').textContent     = s.total;
-    document.getElementById('stat-critical').textContent  = s.critical;
-    document.getElementById('stat-stable').textContent    = s.stable;
-    document.getElementById('stat-recovering').textContent = s.recovering;
-  }
+    // ── Data Loading ───────────────────────────────────────────────────────────
+    async function loadData() {
+      try {
+        const [pRes, sRes] = await Promise.all([
+          fetch(`${API}/patients`),
+          fetch(`${API}/patients/stats`),
+        ]);
+        const pData = await pRes.json();
+        const stats = await sRes.json();
+        patients = pData.patients || [];
+        updateStats(stats);
+        renderDashTable();
+      } catch {
+        // API not running — use seed data for demo
+        patients = getSeedData();
+        updateStats({ total: patients.length, critical: patients.filter(p => p.status === 'Critical').length, stable: patients.filter(p => p.status === 'Stable').length, recovering: patients.filter(p => p.status === 'Recovering').length });
+        renderDashTable();
+      }
+    }
 
-  // ── Dashboard Table ────────────────────────────────────────────────────────
-  function renderDashTable() {
-    const el = document.getElementById('dash-table');
-    const list = patients.filter(p => p.status === 'Critical').concat(patients.filter(p => p.status !== 'Critical')).slice(0, 5);
-    if (!list.length) { el.innerHTML = '<div class="empty"><p>No patients.</p></div>'; return; }
-    el.innerHTML = `<table><thead><tr><th>Patient</th><th>Ward</th><th>Doctor</th><th>Status</th></tr></thead><tbody>${list.map(p=>`
+    function getSeedData() {
+      return [
+        { id: 'p-001', name: 'Arjun Sharma', age: 45, gender: 'Male', bloodGroup: 'O+', ward: 'Cardiology', status: 'Critical', admittedAt: '2024-01-10T08:30:00Z', doctor: 'Dr. Priya Mehta', contact: '+91-9876543210' },
+        { id: 'p-002', name: 'Sunita Verma', age: 34, gender: 'Female', bloodGroup: 'A+', ward: 'Neurology', status: 'Stable', admittedAt: '2024-01-12T11:00:00Z', doctor: 'Dr. Ramesh Gupta', contact: '+91-9123456789' },
+        { id: 'p-003', name: 'Mohammed Irfan', age: 62, gender: 'Male', bloodGroup: 'B-', ward: 'Orthopedics', status: 'Recovering', admittedAt: '2024-01-08T14:15:00Z', doctor: 'Dr. Anjali Singh', contact: '+91-9012345678' },
+        { id: 'p-004', name: 'Kavita Nair', age: 28, gender: 'Female', bloodGroup: 'AB+', ward: 'Maternity', status: 'Stable', admittedAt: '2024-01-14T09:45:00Z', doctor: 'Dr. Deepa Krishnan', contact: '+91-9988776655' },
+        { id: 'p-005', name: 'Rajesh Patel', age: 55, gender: 'Male', bloodGroup: 'O-', ward: 'ICU', status: 'Critical', admittedAt: '2024-01-15T02:00:00Z', doctor: 'Dr. Priya Mehta', contact: '+91-9876501234' },
+      ];
+    }
+
+    function updateStats(s) {
+      document.getElementById('stat-total').textContent = s.total;
+      document.getElementById('stat-critical').textContent = s.critical;
+      document.getElementById('stat-stable').textContent = s.stable;
+      document.getElementById('stat-recovering').textContent = s.recovering;
+    }
+
+    // ── Dashboard Table ────────────────────────────────────────────────────────
+    function renderDashTable() {
+      const el = document.getElementById('dash-table');
+      const list = patients.filter(p => p.status === 'Critical').concat(patients.filter(p => p.status !== 'Critical')).slice(0, 5);
+      if (!list.length) { el.innerHTML = '<div class="empty"><p>No patients.</p></div>'; return; }
+      el.innerHTML = `<table><thead><tr><th>Patient</th><th>Ward</th><th>Doctor</th><th>Status</th></tr></thead><tbody>${list.map(p => `
       <tr onclick="showVitalsModal('${p.id}')">
         <td><div class="patient-name">${p.name}</div><div class="patient-id">${p.id}</div></td>
         <td>${p.ward}</td><td>${p.doctor}</td>
         <td>${badgeHtml(p.status)}</td>
       </tr>`).join('')}</tbody></table>`;
-  }
+    }
 
-  // ── Patient Table ──────────────────────────────────────────────────────────
-  function renderPatients() {
-    const search = document.getElementById('search-input')?.value.toLowerCase() || '';
-    const ward   = document.getElementById('filter-ward')?.value || '';
-    const status = document.getElementById('filter-status')?.value || '';
-    let list = patients;
-    if (search) list = list.filter(p => p.name.toLowerCase().includes(search));
-    if (ward)   list = list.filter(p => p.ward === ward);
-    if (status) list = list.filter(p => p.status === status);
+    // ── Patient Table ──────────────────────────────────────────────────────────
+    function renderPatients() {
+      const search = document.getElementById('search-input')?.value.toLowerCase() || '';
+      const ward = document.getElementById('filter-ward')?.value || '';
+      const status = document.getElementById('filter-status')?.value || '';
+      let list = patients;
+      if (search) list = list.filter(p => p.name.toLowerCase().includes(search));
+      if (ward) list = list.filter(p => p.ward === ward);
+      if (status) list = list.filter(p => p.status === status);
 
-    const tbody = document.getElementById('patient-tbody');
-    const empty = document.getElementById('patient-empty');
+      const tbody = document.getElementById('patient-tbody');
+      const empty = document.getElementById('patient-empty');
 
-    if (!list.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
-    empty.style.display = 'none';
-    tbody.innerHTML = list.map(p => `
+      if (!list.length) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      tbody.innerHTML = list.map(p => `
       <tr>
         <td><div class="patient-name">${p.name}</div><div class="patient-id">${p.id}</div></td>
         <td>${p.age} / ${p.gender}</td>
@@ -742,113 +1344,113 @@
           </div>
         </td>
       </tr>`).join('');
-  }
-
-  function badgeHtml(status) {
-    const cls = { Critical:'badge-critical', Stable:'badge-stable', Recovering:'badge-recovering' }[status] || '';
-    return `<span class="badge ${cls}">${status}</span>`;
-  }
-
-  // ── Admit Patient ──────────────────────────────────────────────────────────
-  function openAdmitModal() { document.getElementById('admit-modal').classList.add('open'); }
-
-  async function admitPatient() {
-    const name   = document.getElementById('f-name').value.trim();
-    const age    = parseInt(document.getElementById('f-age').value);
-    const gender = document.getElementById('f-gender').value;
-    const blood  = document.getElementById('f-blood').value;
-    const ward   = document.getElementById('f-ward').value;
-    const status = document.getElementById('f-status').value;
-    const doctor = document.getElementById('f-doctor').value.trim();
-    const contact = document.getElementById('f-contact').value.trim();
-
-    if (!name || !age || !gender || !ward || !status || !doctor) { showToast('Please fill all required fields.', 'error'); return; }
-
-    const payload = { name, age, gender, bloodGroup: blood, ward, status, doctor, contact };
-
-    try {
-      const res = await fetch(`${API}/patients`, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-      if (!res.ok) throw new Error();
-      const p = await res.json();
-      patients.unshift(p);
-    } catch {
-      // Offline demo mode
-      const p = { id: 'p-' + Date.now(), admittedAt: new Date().toISOString(), ...payload };
-      patients.unshift(p);
     }
 
-    closeModal('admit-modal');
-    clearForm();
-    updateStats({ total: patients.length, critical: patients.filter(p=>p.status==='Critical').length, stable: patients.filter(p=>p.status==='Stable').length, recovering: patients.filter(p=>p.status==='Recovering').length });
-    renderDashTable();
-    renderPatients();
-    showToast(`✅ ${name} admitted successfully.`, 'success');
-  }
-
-  function clearForm() {
-    ['f-name','f-age','f-gender','f-blood','f-ward','f-status','f-doctor','f-contact'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.value = '';
-    });
-  }
-
-  // ── Discharge ──────────────────────────────────────────────────────────────
-  async function dischargePatient(id, name) {
-    if (!confirm(`Discharge ${name}?`)) return;
-    try { await fetch(`${API}/patients/${id}`, { method: 'DELETE' }); } catch {}
-    patients = patients.filter(p => p.id !== id);
-    updateStats({ total: patients.length, critical: patients.filter(p=>p.status==='Critical').length, stable: patients.filter(p=>p.status==='Stable').length, recovering: patients.filter(p=>p.status==='Recovering').length });
-    renderDashTable();
-    renderPatients();
-    showToast(`${name} discharged.`, 'success');
-  }
-
-  // ── Vitals ────────────────────────────────────────────────────────────────
-  function populateVitalsSelect() {
-    const sel = document.getElementById('vitals-patient-select');
-    sel.innerHTML = '<option value="">Select Patient…</option>' + patients.map(p => `<option value="${p.id}">${p.name} — ${p.ward}</option>`).join('');
-  }
-
-  async function loadVitals() {
-    const id = document.getElementById('vitals-patient-select').value;
-    if (!id) return;
-    const patient = patients.find(p => p.id === id);
-    let vitals = [];
-
-    try {
-      const res = await fetch(`${API}/vitals/${id}`);
-      const data = await res.json();
-      vitals = data.vitals || [];
-    } catch {
-      vitals = [generateMockVital(patient?.status)];
+    function badgeHtml(status) {
+      const cls = { Critical: 'badge-critical', Stable: 'badge-stable', Recovering: 'badge-recovering' }[status] || '';
+      return `<span class="badge ${cls}">${status}</span>`;
     }
 
-    renderVitalsSection(patient, vitals);
-  }
+    // ── Admit Patient ──────────────────────────────────────────────────────────
+    function openAdmitModal() { document.getElementById('admit-modal').classList.add('open'); }
 
-  function generateMockVital(status) {
-    const c = status === 'Critical';
-    return {
-      heartRate: c ? 130 : 74,
-      bloodPressureSys: c ? 160 : 118,
-      bloodPressureDia: c ? 100 : 76,
-      temperature: c ? 39.2 : 37.1,
-      oxygenSaturation: c ? 91 : 98,
-      respiratoryRate: c ? 26 : 16,
-      recordedAt: new Date().toISOString(),
-    };
-  }
+    async function admitPatient() {
+      const name = document.getElementById('f-name').value.trim();
+      const age = parseInt(document.getElementById('f-age').value);
+      const gender = document.getElementById('f-gender').value;
+      const blood = document.getElementById('f-blood').value;
+      const ward = document.getElementById('f-ward').value;
+      const status = document.getElementById('f-status').value;
+      const doctor = document.getElementById('f-doctor').value.trim();
+      const contact = document.getElementById('f-contact').value.trim();
 
-  function renderVitalsSection(patient, vitals) {
-    const latest = vitals[0];
-    if (!latest) { document.getElementById('vitals-content').innerHTML = '<div class="empty"><p>No vitals recorded yet.</p></div>'; return; }
+      if (!name || !age || !gender || !ward || !status || !doctor) { showToast('Please fill all required fields.', 'error'); return; }
 
-    const hr   = latest.heartRate;
-    const spo2 = latest.oxygenSaturation;
-    const temp = parseFloat(latest.temperature);
-    const rr   = latest.respiratoryRate;
+      const payload = { name, age, gender, bloodGroup: blood, ward, status, doctor, contact };
 
-    document.getElementById('vitals-content').innerHTML = `
+      try {
+        const res = await fetch(`${API}/patients`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        if (!res.ok) throw new Error();
+        const p = await res.json();
+        patients.unshift(p);
+      } catch {
+        // Offline demo mode
+        const p = { id: 'p-' + Date.now(), admittedAt: new Date().toISOString(), ...payload };
+        patients.unshift(p);
+      }
+
+      closeModal('admit-modal');
+      clearForm();
+      updateStats({ total: patients.length, critical: patients.filter(p => p.status === 'Critical').length, stable: patients.filter(p => p.status === 'Stable').length, recovering: patients.filter(p => p.status === 'Recovering').length });
+      renderDashTable();
+      renderPatients();
+      showToast(`✅ ${name} admitted successfully.`, 'success');
+    }
+
+    function clearForm() {
+      ['f-name', 'f-age', 'f-gender', 'f-blood', 'f-ward', 'f-status', 'f-doctor', 'f-contact'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+    }
+
+    // ── Discharge ──────────────────────────────────────────────────────────────
+    async function dischargePatient(id, name) {
+      if (!confirm(`Discharge ${name}?`)) return;
+      try { await fetch(`${API}/patients/${id}`, { method: 'DELETE' }); } catch { }
+      patients = patients.filter(p => p.id !== id);
+      updateStats({ total: patients.length, critical: patients.filter(p => p.status === 'Critical').length, stable: patients.filter(p => p.status === 'Stable').length, recovering: patients.filter(p => p.status === 'Recovering').length });
+      renderDashTable();
+      renderPatients();
+      showToast(`${name} discharged.`, 'success');
+    }
+
+    // ── Vitals ────────────────────────────────────────────────────────────────
+    function populateVitalsSelect() {
+      const sel = document.getElementById('vitals-patient-select');
+      sel.innerHTML = '<option value="">Select Patient…</option>' + patients.map(p => `<option value="${p.id}">${p.name} — ${p.ward}</option>`).join('');
+    }
+
+    async function loadVitals() {
+      const id = document.getElementById('vitals-patient-select').value;
+      if (!id) return;
+      const patient = patients.find(p => p.id === id);
+      let vitals = [];
+
+      try {
+        const res = await fetch(`${API}/vitals/${id}`);
+        const data = await res.json();
+        vitals = data.vitals || [];
+      } catch {
+        vitals = [generateMockVital(patient?.status)];
+      }
+
+      renderVitalsSection(patient, vitals);
+    }
+
+    function generateMockVital(status) {
+      const c = status === 'Critical';
+      return {
+        heartRate: c ? 130 : 74,
+        bloodPressureSys: c ? 160 : 118,
+        bloodPressureDia: c ? 100 : 76,
+        temperature: c ? 39.2 : 37.1,
+        oxygenSaturation: c ? 91 : 98,
+        respiratoryRate: c ? 26 : 16,
+        recordedAt: new Date().toISOString(),
+      };
+    }
+
+    function renderVitalsSection(patient, vitals) {
+      const latest = vitals[0];
+      if (!latest) { document.getElementById('vitals-content').innerHTML = '<div class="empty"><p>No vitals recorded yet.</p></div>'; return; }
+
+      const hr = latest.heartRate;
+      const spo2 = latest.oxygenSaturation;
+      const temp = parseFloat(latest.temperature);
+      const rr = latest.respiratoryRate;
+
+      document.getElementById('vitals-content').innerHTML = `
       <div style="margin-bottom:16px;">
         <span style="font-family:var(--font-head);font-size:18px;font-weight:700;">${patient?.name || 'Patient'}</span>
         <span style="margin-left:10px;">${badgeHtml(patient?.status)}</span>
@@ -857,65 +1459,65 @@
       <div class="vitals-grid">
         <div class="vital-card">
           <div class="vital-name">Heart Rate</div>
-          <div class="vital-value ${hr>100||hr<60?'':''}">
+          <div class="vital-value ${hr > 100 || hr < 60 ? '' : ''}">
             ${hr}<span class="vital-unit">bpm</span>
           </div>
-          <div class="vital-bar"><div class="vital-fill ${hr>100?'fill-danger':hr>85?'fill-warning':'fill-normal'}" style="width:${Math.min(hr/200*100,100)}%"></div></div>
+          <div class="vital-bar"><div class="vital-fill ${hr > 100 ? 'fill-danger' : hr > 85 ? 'fill-warning' : 'fill-normal'}" style="width:${Math.min(hr / 200 * 100, 100)}%"></div></div>
         </div>
         <div class="vital-card">
           <div class="vital-name">Blood Pressure</div>
           <div class="vital-value">${latest.bloodPressureSys}<span class="vital-unit">/ ${latest.bloodPressureDia} mmHg</span></div>
-          <div class="vital-bar"><div class="vital-fill ${latest.bloodPressureSys>140?'fill-danger':latest.bloodPressureSys>120?'fill-warning':'fill-normal'}" style="width:${Math.min(latest.bloodPressureSys/200*100,100)}%"></div></div>
+          <div class="vital-bar"><div class="vital-fill ${latest.bloodPressureSys > 140 ? 'fill-danger' : latest.bloodPressureSys > 120 ? 'fill-warning' : 'fill-normal'}" style="width:${Math.min(latest.bloodPressureSys / 200 * 100, 100)}%"></div></div>
         </div>
         <div class="vital-card">
           <div class="vital-name">Temperature</div>
           <div class="vital-value">${temp}<span class="vital-unit">°C</span></div>
-          <div class="vital-bar"><div class="vital-fill ${temp>38.5?'fill-danger':temp>37.5?'fill-warning':'fill-normal'}" style="width:${Math.min((temp-35)/15*100,100)}%"></div></div>
+          <div class="vital-bar"><div class="vital-fill ${temp > 38.5 ? 'fill-danger' : temp > 37.5 ? 'fill-warning' : 'fill-normal'}" style="width:${Math.min((temp - 35) / 15 * 100, 100)}%"></div></div>
         </div>
         <div class="vital-card">
           <div class="vital-name">SpO₂ (Oxygen)</div>
           <div class="vital-value">${spo2}<span class="vital-unit">%</span></div>
-          <div class="vital-bar"><div class="vital-fill ${spo2<90?'fill-danger':spo2<95?'fill-warning':'fill-normal'}" style="width:${spo2}%"></div></div>
+          <div class="vital-bar"><div class="vital-fill ${spo2 < 90 ? 'fill-danger' : spo2 < 95 ? 'fill-warning' : 'fill-normal'}" style="width:${spo2}%"></div></div>
         </div>
         <div class="vital-card">
           <div class="vital-name">Respiratory Rate</div>
           <div class="vital-value">${rr}<span class="vital-unit">/min</span></div>
-          <div class="vital-bar"><div class="vital-fill ${rr>20?'fill-danger':rr>18?'fill-warning':'fill-normal'}" style="width:${Math.min(rr/40*100,100)}%"></div></div>
+          <div class="vital-bar"><div class="vital-fill ${rr > 20 ? 'fill-danger' : rr > 18 ? 'fill-warning' : 'fill-normal'}" style="width:${Math.min(rr / 40 * 100, 100)}%"></div></div>
         </div>
         <div class="vital-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;">
           <div style="font-size:13px;color:var(--muted);text-align:center;">Overall condition</div>
-          <div style="font-family:var(--font-head);font-size:22px;font-weight:800;color:${patient?.status==='Critical'?'var(--red)':patient?.status==='Stable'?'var(--green)':'var(--yellow)'}">
+          <div style="font-family:var(--font-head);font-size:22px;font-weight:800;color:${patient?.status === 'Critical' ? 'var(--red)' : patient?.status === 'Stable' ? 'var(--green)' : 'var(--yellow)'}">
             ${patient?.status || '—'}
           </div>
         </div>
       </div>`;
-  }
-
-  async function showVitalsModal(id) {
-    const patient = patients.find(p => p.id === id);
-    if (!patient) return;
-    document.getElementById('vitals-modal-title').textContent = `${patient.name} — Vitals`;
-
-    let vitals = [];
-    try {
-      const res = await fetch(`${API}/vitals/${id}`);
-      const data = await res.json();
-      vitals = data.vitals || [];
-    } catch {
-      vitals = [generateMockVital(patient.status)];
     }
 
-    const latest = vitals[0];
-    if (!latest) { document.getElementById('vitals-modal-content').innerHTML = '<p style="color:var(--muted)">No vitals recorded.</p>'; }
-    else {
-      const rows = [
-        ['Heart Rate', `${latest.heartRate} bpm`, latest.heartRate > 100 || latest.heartRate < 60 ? 'vr-danger' : 'vr-normal'],
-        ['Blood Pressure', `${latest.bloodPressureSys}/${latest.bloodPressureDia} mmHg`, latest.bloodPressureSys > 140 ? 'vr-danger' : 'vr-normal'],
-        ['Temperature', `${latest.temperature} °C`, parseFloat(latest.temperature) > 38.5 ? 'vr-danger' : 'vr-normal'],
-        ['SpO₂', `${latest.oxygenSaturation}%`, latest.oxygenSaturation < 90 ? 'vr-danger' : latest.oxygenSaturation < 95 ? 'vr-warning' : 'vr-normal'],
-        ['Respiratory Rate', `${latest.respiratoryRate} /min`, latest.respiratoryRate > 20 ? 'vr-warning' : 'vr-normal'],
-      ];
-      document.getElementById('vitals-modal-content').innerHTML = `
+    async function showVitalsModal(id) {
+      const patient = patients.find(p => p.id === id);
+      if (!patient) return;
+      document.getElementById('vitals-modal-title').textContent = `${patient.name} — Vitals`;
+
+      let vitals = [];
+      try {
+        const res = await fetch(`${API}/vitals/${id}`);
+        const data = await res.json();
+        vitals = data.vitals || [];
+      } catch {
+        vitals = [generateMockVital(patient.status)];
+      }
+
+      const latest = vitals[0];
+      if (!latest) { document.getElementById('vitals-modal-content').innerHTML = '<p style="color:var(--muted)">No vitals recorded.</p>'; }
+      else {
+        const rows = [
+          ['Heart Rate', `${latest.heartRate} bpm`, latest.heartRate > 100 || latest.heartRate < 60 ? 'vr-danger' : 'vr-normal'],
+          ['Blood Pressure', `${latest.bloodPressureSys}/${latest.bloodPressureDia} mmHg`, latest.bloodPressureSys > 140 ? 'vr-danger' : 'vr-normal'],
+          ['Temperature', `${latest.temperature} °C`, parseFloat(latest.temperature) > 38.5 ? 'vr-danger' : 'vr-normal'],
+          ['SpO₂', `${latest.oxygenSaturation}%`, latest.oxygenSaturation < 90 ? 'vr-danger' : latest.oxygenSaturation < 95 ? 'vr-warning' : 'vr-normal'],
+          ['Respiratory Rate', `${latest.respiratoryRate} /min`, latest.respiratoryRate > 20 ? 'vr-warning' : 'vr-normal'],
+        ];
+        document.getElementById('vitals-modal-content').innerHTML = `
         <div style="font-size:12px;color:var(--muted);margin-bottom:12px;">
           Ward: <b style="color:var(--text)">${patient.ward}</b> &nbsp;|&nbsp;
           Doctor: <b style="color:var(--text)">${patient.doctor}</b> &nbsp;|&nbsp;
@@ -929,20 +1531,21 @@
               <span class="vitals-row-value ${cls}">${val}</span>
             </div>`).join('')}
         </div>`;
+      }
+      document.getElementById('vitals-modal').classList.add('open');
     }
-    document.getElementById('vitals-modal').classList.add('open');
-  }
 
-  // ── Helpers ────────────────────────────────────────────────────────────────
-  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-  document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); }));
+    // ── Helpers ────────────────────────────────────────────────────────────────
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    document.querySelectorAll('.modal-overlay').forEach(o => o.addEventListener('click', e => { if (e.target === o) o.classList.remove('open'); }));
 
-  function showToast(msg, type = 'success') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `toast ${type} show`;
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-</script>
+    function showToast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = `toast ${type} show`;
+      setTimeout(() => t.classList.remove('show'), 3500);
+    }
+  </script>
 </body>
+
 </html>
