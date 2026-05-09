@@ -5,8 +5,8 @@ services:
   # ── MediTrack Backend API ──────────────────────────────────────────────────
   backend:
     build:
-      context: ./backend
-      dockerfile: ../Dockerfile
+      context: .
+      dockerfile: Dockerfile
     container_name: meditrack-api
     ports:
       - "5050:5000"
@@ -29,7 +29,7 @@ services:
     ports:
       - "8085:80"
     volumes:
-      - ./frontend:/usr/share/nginx/html:ro
+      - ./index.html:/usr/share/nginx/html/index.html:ro
     depends_on:
       - backend
     networks:
@@ -40,11 +40,18 @@ services:
     image: prom/prometheus:latest
     container_name: meditrack-prometheus
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9095:9090"
     networks:
       - meditrack-net
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    restart: unless-stopped
 
   # ── Grafana ────────────────────────────────────────────────────────────────
   grafana:
@@ -69,3 +76,4 @@ networks:
 
 volumes:
   grafana-storage:
+

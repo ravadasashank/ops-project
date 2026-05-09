@@ -27,7 +27,8 @@ spec:
     spec:
       containers:
         - name: meditrack-backend
-          image: yourdockerhubuser/meditrack-backend:IMAGE_TAG_PLACEHOLDER
+          image: ops-backend:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
           env:
@@ -85,3 +86,4 @@ spec:
         - name: frontend-files
           configMap:
             name: meditrack-frontend-files
+

@@ -1,7 +1,7 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
-const store   = require('../models/store');
-const { activePatients, criticalPatients } = require('../middleware/metrics');
+const store = require('./store');
+const { activePatients, criticalPatients } = require('./metrics');
 
 const router = express.Router();
 
@@ -15,7 +15,7 @@ function updateGauges() {
 router.get('/', (req, res) => {
   const { ward, status, search } = req.query;
   let list = store.getAll();
-  if (ward)   list = list.filter(p => p.ward.toLowerCase() === ward.toLowerCase());
+  if (ward) list = list.filter(p => p.ward.toLowerCase() === ward.toLowerCase());
   if (status) list = list.filter(p => p.status.toLowerCase() === status.toLowerCase());
   if (search) list = list.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
   res.json({ count: list.length, patients: list });

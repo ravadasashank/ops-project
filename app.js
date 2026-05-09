@@ -1,13 +1,14 @@
 const express = require('express');
-const cors    = require('cors');
-const helmet  = require('helmet');
-const morgan  = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
 
-const metricsMiddleware = require('./middleware/metrics');
-const patientRoutes     = require('./routes/patients');
-const vitalRoutes       = require('./routes/vitals');
-const healthRoutes      = require('./routes/health');
-const metricsRoutes     = require('./routes/metrics');
+const metricsMiddleware = require('./metrics');
+const patientRoutes = require('./patients');
+const vitalRoutes = require('./vitals');
+const healthRoutes = require('./health');
+const metricsModule = require('./metrics');
+const metricsRoutes = metricsModule.router;
 
 const app = express();
 
@@ -22,9 +23,9 @@ app.use(metricsMiddleware);
 
 // ── API Routes ───────────────────────────────────────────────────────────────
 app.use('/api/patients', patientRoutes);
-app.use('/api/vitals',   vitalRoutes);
-app.use('/api/health',   healthRoutes);
-app.use('/metrics',      metricsRoutes);
+app.use('/api/vitals', vitalRoutes);
+app.use('/api/health', healthRoutes);
+app.use('/metrics', metricsRoutes);
 
 // ── 404 Handler ──────────────────────────────────────────────────────────────
 app.use((req, res) => {
@@ -35,6 +36,12 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal server error' });
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`MediTrack API running on port ${PORT}`);
 });
 
 module.exports = app;

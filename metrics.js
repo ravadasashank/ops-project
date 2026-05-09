@@ -1,4 +1,7 @@
+const express = require('express');
 const client = require('prom-client');
+
+const router = express.Router();
 
 const register = new client.Registry();
 client.collectDefaultMetrics({ register });
@@ -31,17 +34,35 @@ const criticalPatients = new client.Gauge({
   registers: [register],
 });
 
-// Middleware to track HTTP requests
+// ── Middleware ────────────────────────────────────────────────────────────────
 function metricsMiddleware(req, res, next) {
-  const end = httpDuration.startTimer({ method: req.method, route: req.path });
+  const end = httpDuration.startTimer({
+    method: req.method,
+    route: req.path
+  });
+
   res.on('finish', () => {
-    httpRequestTotal.inc({ method: req.method, route: req.path, status: res.statusCode });
+    httpRequestTotal.inc({
+      method: req.method,
+      route: req.path,
+      status: res.statusCode
+    });
+
     end();
   });
+
   next();
 }
 
+// ── Metrics Route ─────────────────────────────────────────────────────────────
+router.get('/', async (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(await register.metrics());
+});
+
 module.exports = metricsMiddleware;
-module.exports.register        = register;
-module.exports.activePatients  = activePatients;
+
+module.exports.router = router;
+module.exports.register = register;
+module.exports.activePatients = activePatients;
 module.exports.criticalPatients = criticalPatients;

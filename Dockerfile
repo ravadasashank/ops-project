@@ -2,7 +2,7 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install
 
 # ── Stage 2: Production image ─────────────────────────────────────────────────
 FROM node:20-alpine
@@ -21,4 +21,4 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
   CMD wget -qO- http://localhost:5000/api/health || exit 1
 
-CMD ["node", "src/server.js"]
+CMD ["node", "app.js"]
